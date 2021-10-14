@@ -73,3 +73,5 @@ build*
 
 # mac
 .DS_Store
+
+examples

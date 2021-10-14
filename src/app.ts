@@ -5,11 +5,12 @@ import logger from 'morgan';
 import path from 'path';
 import config from './config';
 import HealthController from './controllers/HealthController';
+import CarController from './controllers/CarController';
 
 const app = express();
 app.disable('x-powered-by');
-const apiPath = config.apiPath;
-const fullApiPathV1 = `${apiPath}/V2/Utilities/notification`;
+
+const apiPath = `/smile`;
 
 app.use(logger('dev', { skip: (req, res) => req.path === '/management/health' }));
 app.use(express.json());
@@ -24,7 +25,8 @@ app.use((_, res: Response, next: NextFunction) => {
     next();
 });
 
-app.use('/', HealthController);
+app.use(apiPath, HealthController);
+app.use(apiPath, CarController);
 app.use(actuator({
     basePath: '/management',
     infoGitMode: 'full'
