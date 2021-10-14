@@ -12,10 +12,10 @@ export default class FormatUtil {
      */
     public static async xmlToJson(data: any) {
         let resultJson;
-        await xml2js.parseStringPromise(data).then(function (result: string) {
+        await xml2js.parseStringPromise(data).then((result: string) => {
             resultJson = JSON.parse(JSON.stringify(result));
         })
-            .catch(function (error: any) {
+            .catch((error: any) => {
                 debug(error);
             });
         debug('xmlToJson: %j', resultJson);
