@@ -24,7 +24,8 @@
         "check-module"
       ],
       "ordered-imports": false,
-      "no-var-requires": false
+      "no-var-requires": false,
+      "no-string-literal": false
     },    
     "rulesDirectory": []
   }

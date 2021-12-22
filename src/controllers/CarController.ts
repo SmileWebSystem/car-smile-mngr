@@ -6,7 +6,7 @@ const CarController = Router();
 
 CarController.get('/v1/car/:placa',
 async (req: Request, res: Response) => {
-    const result = await CarService.validateCar(req.params.placa);
+    const result = await CarService.checkCar(req.params.placa);
     res.status(constants.HTTP_STATUS_OK).send(result);
 });
 

@@ -1,5 +1,7 @@
 import config from '../config';
 import debugLib from 'debug';
+import fs from 'fs';
+import path from 'path';
 
 const soapRequest = require('easy-soap-request');
 const { base64encode, base64decode } = require('nodejs-base64');
@@ -14,6 +16,8 @@ export default class SoapService {
      * @returns
      */
     public static async getSoapService(placa: string) {
+
+
         const sampleHeaders = {
             'Content-Type': 'text/xml',
         };
@@ -36,9 +40,17 @@ export default class SoapService {
         const xml1 = base64decode(request1);
         const xml2 = base64decode(request2);
         const request = xml1.concat(placa).concat(xml2);
-        const { response } = await soapRequest({ url: config.endPoint, headers: sampleHeaders, xml: request });
 
-        debug('getSoapService %j', response);
-        return response;
+        debug('usedMock: ', config.useMock);
+        if (!config.useMock) {
+            // consume servicio real
+            const { response } = await soapRequest({ url: config.endPoint, headers: sampleHeaders, xml: request });
+            return response;
+        } else {
+            //usa el la respuesta del mock
+            const file = path.join(__dirname, '../../examples/' + config.useMockType);
+            const finalFile = fs.readFileSync(file, 'utf-8');
+            return JSON.parse(finalFile);
+        }
     }
 }

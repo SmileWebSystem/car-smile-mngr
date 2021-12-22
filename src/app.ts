@@ -10,7 +10,7 @@ import CarController from './controllers/CarController';
 const app = express();
 app.disable('x-powered-by');
 
-const apiPath = `/smile`;
+const apiPath = config.apiPath;
 
 app.use(logger('dev', { skip: (req, res) => req.path === '/management/health' }));
 app.use(express.json());
