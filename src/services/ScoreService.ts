@@ -18,20 +18,17 @@ export default class ScoreService {
 
     }
 
-
     /**
      * Realiza el calculo de puntaje para los dueños
-     * @returns 
+     * @returns
      */
     public static calculateOwners(): number {
         return -4.5;
     }
 
-
-
     /**
      * Retorna el listado de dueños que ha tenido el vehiculo
-     * @param data 
+     * @param data
      */
     private static getOwners(data: any) {
 

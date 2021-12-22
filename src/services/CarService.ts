@@ -13,7 +13,7 @@ export default class CarService {
      */
     public static async checkCar(placa: string) {
         debug('placa: %j', placa);
-        let infoCar;        
+        let infoCar;
 
         await SoapService.getSoapService(placa).then(async (response) => {
             const { body, statusCode } = response;

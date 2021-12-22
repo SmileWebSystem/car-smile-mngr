@@ -17,7 +17,6 @@ export default class SoapService {
      */
     public static async getSoapService(placa: string) {
 
-
         const sampleHeaders = {
             'Content-Type': 'text/xml',
         };
@@ -47,7 +46,7 @@ export default class SoapService {
             const { response } = await soapRequest({ url: config.endPoint, headers: sampleHeaders, xml: request });
             return response;
         } else {
-            //usa el la respuesta del mock
+            // usa el la respuesta del mock
             const file = path.join(__dirname, '../../examples/' + config.useMockType);
             const finalFile = fs.readFileSync(file, 'utf-8');
             return JSON.parse(finalFile);

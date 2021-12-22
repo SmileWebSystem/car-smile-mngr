@@ -5,5 +5,4 @@ export default class ScoresDto {
     constructor(scoreOwners: number) {
         this.scoreOwners = scoreOwners;
     }
-
 }
