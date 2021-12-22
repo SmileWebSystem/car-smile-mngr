@@ -1,3 +1,4 @@
+import { SSL_OP_NO_COMPRESSION } from 'constants';
 import debugLib from 'debug';
 import ScoresDto from '../models/ScoresDto';
 
@@ -11,10 +12,14 @@ export default class ScoreService {
      */
     public static carInformationAnalysis(infoCar: any) {
 
-        const scoreOwners = this.calculateOwners();
-        const scores = new ScoresDto(scoreOwners);
+        const scores: ScoresDto = new ScoresDto();
+        scores.scoreOwners = this.calculateOwners();
+        scores.scoreSinister = this.calculateSinister();
+        scores.scoreOpenTrafficTickets = this.calculateOpenTrafficTickets();
+        scores.scoreCloseTrafficTickets = this.calculateCloseTrafficTickets();
+        scores.socoreTotal = 100; // TODO: calcular
 
-        return infoCar;
+        return scores;
 
     }
 
@@ -23,29 +28,35 @@ export default class ScoreService {
      * @returns
      */
     public static calculateOwners(): number {
+        // TODO:
         return -4.5;
     }
 
     /**
-     * Retorna el listado de dueños que ha tenido el vehiculo
-     * @param data
+     *
+     * @returns
      */
-    private static getOwners(data: any) {
-
-        debug('getOwners: %j', this.getHistory(data));
-
-        const history: any[] = this.getHistory(data);
-        history.forEach((element) => {
-            debug(element['NombreTomador']);
-        });
+    public static calculateSinister(): number {
+        // TODO:
+        return -4.5;
     }
 
-    private static getData(infoCar: any) {
-        return infoCar['S:Envelope']['S:Body'][0]['ns0:ConsultaSisaResponse'][0]['Data'][0];
+    /**
+     *
+     * @returns
+     */
+    public static calculateOpenTrafficTickets(): number {
+        // TODO:
+        return -4.5;
     }
 
-    private static getHistory(infoCar: any) {
-        return this.getData(infoCar)['historicoPolizasSisa'];
+    /**
+     *
+     * @returns
+     */
+    public static calculateCloseTrafficTickets(): number {
+        // TODO:
+        return -4.5;
     }
 
 }
